@@ -1,9 +1,10 @@
-#########################################################
-#							#
-# Joy's Chase						#
-# Alunos: Davi Galv„o e Eric Harris    			#
-#							#
-#########################################################
+#########################################
+#					#
+#            Joy's Chase	 	#
+# 	       Made by:			#
+#    Davi Galv√£o and Eric Harris    	#
+#					#
+#########################################
 
 .data
 
@@ -32,11 +33,11 @@ MENU:
 	
 # entrada kdmmio	
 ENTRADA:
-    lw t1,keyboardaddress    # carrega o endereco de controle do KDMMIO
-    lw t0,0(t1)             # Le bit de Controle Teclado
-    andi t0,t0,0x0001       # mascara o bit menos significativo
+    lw t1,keyboardaddress    # Carrega o endereco de controle do KDMMIO
+    lw t0,0(t1)              # Le bit de Controle Teclado
+    andi t0,t0,0x0001        # mascara o bit menos significativo
     beq t0,zero,FIM2         # Se nao ha tecla pressionada entao vai para FIM
-    lw t2,4(t1)             # le o valor da tecla tecla
+    lw t2,4(t1)              # le o valor da tecla tecla
     
     li t0,'1'
     beq t2,t0,MAP1          # se tecla pressionada for '1', vai para o map1
@@ -100,11 +101,11 @@ RENDER_CHAR:
 	
 
 displayPrint:
-	# basic renderer function
-	# utilizes only temporaries
-	# a0 = bitmap display x position (from the left)
-	# a1 = bitmap display y position (from the top)
-	# a2 = image pointer
+	#########################################################
+	# a0 = bitmap display x position (from the left)	#
+	# a1 = bitmap display y position (from the top)		#
+	# a2 = image pointer					#
+ 	#########################################################
 	
 	# t5 = width (x) of image
 	lw	t5, 0(a2)
