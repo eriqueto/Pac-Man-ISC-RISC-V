@@ -1,7 +1,7 @@
 #########################################################
 #							#
-# Joy's Chase						#
-# Alunos: Davi Galv�o e Eric Harris    			#
+# 		    Joy's Chase				#
+#       Created by Davi Galvão e Eric Harris    	#
 #							#
 #########################################################
 
@@ -40,8 +40,9 @@ menu:
 	mv a1, zero
 	la a2, menu
 	jal print
-	
-# entrada kdmmio	
+
+ 
+# keyboard input	
 input:
     lw t1, keyboardaddress    # carrega o endereco de controle do KDMMIO
     lw t0, 0(t1)             # Le bit de Controle Teclado
@@ -54,10 +55,12 @@ input:
     
     li t0, '2'
     beq t2, t0, map_2         # se tecla pressionada for '2', vai para o map2
+
     
 loop:
     j input               # volta a verificar a entrada do teclado		
-	
+
+ 
 # render map1
 map_1:
 	mv a0, zero
@@ -66,6 +69,7 @@ map_1:
 	jal print
 	jal renderComponents
 	jal setup_1
+
 
 # render map2
 map_2:
@@ -149,7 +153,8 @@ setup_1:
 	li a1, 130
 	la a2, powerup
 	jal print
-	
+
+#points
 	li a0, 16
 	li a1, 19
 	la a2, point
@@ -814,6 +819,7 @@ setup_1:
 	li a1, 211
 	la a2, point
 	jal print
+
 
 # setup lvl 2
 setup_2:
@@ -838,7 +844,6 @@ setup_2:
 	la a2, powerup
 	jal print
 # points
-	#1a coluna
 	li a0, 16
 	li a1, 34
 	la a2, point
@@ -894,7 +899,6 @@ setup_2:
 	la a2, point
 	jal print
 	
-	#2a coluna
 	li a0, 32
 	li a1, 18
 	la a2, point
@@ -919,8 +923,7 @@ setup_2:
 	li a1, 210
 	la a2, point
 	jal print
-	
-	#3a coluna
+ 
 	li a0, 48
 	li a1, 18
 	la a2, point
@@ -966,8 +969,6 @@ setup_2:
 	la a2, point
 	jal print
 	
-	
-	#4a coluna
 	li a0, 64
 	li a1, 18
 	la a2, point
@@ -993,7 +994,6 @@ setup_2:
 	la a2, point
 	jal print
 	
-	#5a coluna
 	li a0, 80
 	li a1, 18
 	la a2, point
@@ -1044,7 +1044,6 @@ setup_2:
 	la a2, point
 	jal print
 	
-	#6a coluna
 	li a0, 96
 	li a1, 50
 	la a2, point
@@ -1080,7 +1079,6 @@ setup_2:
 	la a2, point
 	jal print
 	
-	#7a coluna
 	li a0, 112
 	li a1, 18
 	la a2, point
@@ -1121,7 +1119,6 @@ setup_2:
 	la a2, point
 	jal print
 	
-	#8a coluna
 	li a0, 128
 	li a1, 18
 	la a2, point
@@ -1157,7 +1154,6 @@ setup_2:
 	la a2, point
 	jal print	
 	
-	#9a coluna
 	li a0, 144
 	li a1, 18
 	la a2, point
@@ -1173,8 +1169,6 @@ setup_2:
 	la a2, point
 	jal print
 	
-	
-	#10a coluna
 	li a0, 160
 	li a1, 18
 	la a2, point
@@ -1190,8 +1184,6 @@ setup_2:
 	la a2, point
 	jal print
 	
-	
-	#11a coluna
 	li a0, 176
 	li a1, 18
 	la a2, point
@@ -1227,8 +1219,6 @@ setup_2:
 	la a2, point
 	jal print
 	
-	
-	#12a coluna
 	li a0, 192
 	li a1, 18
 	la a2, point
@@ -1269,7 +1259,6 @@ setup_2:
 	la a2, point
 	jal print
 	
-	#13a coluna
 	li a0, 208
 	li a1, 50
 	la a2, point
@@ -1300,8 +1289,6 @@ setup_2:
 	la a2, point
 	jal print
 	
-	
-	#14a coluna
 	li a0, 224
 	li a1, 18
 	la a2, point
@@ -1357,7 +1344,6 @@ setup_2:
 	la a2, point
 	jal print
 	
-	#15a coluna
 	li a0, 240
 	li a1, 18
 	la a2, point
@@ -1383,8 +1369,6 @@ setup_2:
 	la a2, point
 	jal print
 	
-	
-	#16a coluna
 	li a0, 256
 	li a1, 18
 	la a2, point
@@ -1430,10 +1414,6 @@ setup_2:
 	la a2, point
 	jal print
 	
-	
-	
-	
-	#17a coluna
 	li a0, 272
 	li a1, 18
 	la a2, point
@@ -1459,7 +1439,6 @@ setup_2:
 	la a2, point
 	jal print
 	
-	#18a coluna
 	li a0, 288
 	li a1, 34
 	la a2, point
@@ -1514,27 +1493,26 @@ setup_2:
 	li a1, 194
 	la a2, point
 	jal print
-	
 
-		
+ 
 print:
-	# basic renderer function
-	# utilizes only temporaries
-	# a0 = bitmap display x position (from the left)
-	# a1 = bitmap display y position (from the top)
-	# a2 = image pointer
-	# a3 = image selector (for spritesheets)
+	############################################
+	# a0 = x position			   #
+	# a1 = y position		           #
+	# a2 = image pointer			   #
+	# a3 = image selector (spritesheets)       #
+ 	############################################
 	
-	# t5 = width (x) of image
+	# t5 = width of image (x)
 	lw	t5, 0(a2)
 	
-	# t6 = height (y) of image
+	# t6 = height of image (y)
 	addi	a2, a2, 4
 	lw	t6, 0(a2)
 	
 	# a2 = start of image pixel information
 	addi	a2, a2, 4
-	# select image using a3 (for spritesheets)
+	# select image using a3 (spritesheets)
 	add	a2, a3, a2
 	
 	# illegal printing prevention
@@ -1552,9 +1530,7 @@ print:
 	add	t0, t6, a1
 	bgt	t0, t1, end
 	
-	# below are calculations for the display pointer.
-	# just knowing it works is enough
-	# if you spend enough time reading it you'll understand it
+	# calculations for the display pointer
 	# t3 = bitmap display location pointer
 	li	t3, 320
 	mul	a1, t3, a1
@@ -1564,12 +1540,12 @@ print:
 	
 	# t2 = currentY
 	li	t2, 0
-	yLoop:
+	loopY:
 		# while currentY < height
 		bge	t2, t6, end
 		# init currentX to 0
 		li	t1, 0
-		xLoop:
+		loopX:
 			# while currenX < width
 			bge	t1, t5, xEnd
 			# copy information from image to bitmap display according to the relevant pointers
@@ -1580,17 +1556,16 @@ print:
 			addi	a2, a2, 4
 			addi	t3, t3, 4
 			addi	t1, t1, 4
-			j	xLoop
-		xEnd:
+			j	loopX
+		endX:
 		# next BMD line, reset position according to width
 		addi	t3, t3, 320
 		sub	t3, t3, t5
 		
 		# increment currentY
 		addi	t2, t2, 1
-		j	yLoop	
+		j	loopY	
 	end:
-	
 	# reset a3 for safety purposes (it is only used by display print and is never reset anywhere)
 	mv	a3, zero
 	ret
