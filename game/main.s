@@ -1,7 +1,7 @@
 #########################################
 #					#
 #            Joy's Chase	 	#
-# 	       Made by:			#
+# 	     Created by:		#
 #    Davi Galvão and Eric Harris    	#
 #					#
 #########################################
@@ -31,22 +31,22 @@ MENU:
 	la a2, menu
 	jal displayPrint
 	
-# entrada kdmmio	
-ENTRADA:
-    lw t1,keyboardaddress    # Carrega o endereco de controle do KDMMIO
-    lw t0,0(t1)              # Le bit de Controle Teclado
-    andi t0,t0,0x0001        # mascara o bit menos significativo
-    beq t0,zero,FIM2         # Se nao ha tecla pressionada entao vai para FIM
-    lw t2,4(t1)              # le o valor da tecla tecla
+# keyboard input	
+INPUT:
+    lw t1,keyboardaddress    # load KDMMIO control address
+    lw t0,0(t1)              # read the bit of keyboard control
+    andi t0,t0,0x0001        # hide the least significant bit
+    beq t0,zero,FIM2         # if there is no key pressed, go to FIM2
+    lw t2,4(t1)              # read the ascii value of the key pressed
     
     li t0,'1'
-    beq t2,t0,MAP1          # se tecla pressionada for '1', vai para o map1
+    beq t2,t0,MAP1          # if key pressed is '1', go to MAP1
     
     li t0,'2'
-    beq t2,t0,MAP2         # se tecla pressionada for '2', vai para o map2
+    beq t2,t0,MAP2          # if key pressed is '2', go to MAP2
     
 FIM2:
-    j ENTRADA               # volta a verificar a entrada do teclado		
+    j INPUT                 # return to INPUT		
 	
 # render map1
 MAP1:
@@ -102,8 +102,8 @@ RENDER_CHAR:
 
 displayPrint:
 	#########################################################
-	# a0 = bitmap display x position (from the left)	#
-	# a1 = bitmap display y position (from the top)		#
+	# a0 = bitmap display x position 			#
+	# a1 = bitmap display y position 			#
 	# a2 = image pointer					#
  	#########################################################
 	
@@ -132,9 +132,7 @@ displayPrint:
 	add	t0, t6, a1
 	bgt	t0, t1, displayPrintEnd
 	
-	# below are calculations for the display pointer.
-	# just knowing it works is enough
-	# if you spend enough time reading it you'll understand it
+	# calculations for the display pointer
 	# t3 = bitmap display location pointer
 	li	t3, 320
 	mul	a1, t3, a1
